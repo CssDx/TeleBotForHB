@@ -3,14 +3,14 @@ import time
 from telebot import types
 import random
 import config
-bot = telebot.TeleBot('6279231842:AAF0fLPqtyLs7SVJUVZ59PksLo7PRYEiHn4')
+bot = telebot.TeleBot('') #Your token
 named_tuple = time.localtime()
 time_string = time.strftime("%m/%d", named_tuple)
 print(time_string)
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     if message.text == '/start':
-        bot.send_message(message.from_user.id, "Приветствую, я бот, который хранит подарок для самого лучшего папочки в мире! Для подробностей пиши /help")
+        bot.send_message(message.from_user.id, " Yoir main text/help")
 
     elif message.text == "/help":
         keyboard1 = types.InlineKeyboardMarkup()
@@ -25,12 +25,8 @@ def get_text_messages(message):
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
-    photos = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg',
-              '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg', '21.jpg',
-              '22.jpg', '23.jpg', '24.jpg', '25.jpg', '26.jpg', '27.jpg', '28.jpg', '29.jpg', '30.jpg', '31.jpg']
-    photosCopy = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg',
-                  '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg', '21.jpg',
-                  '22.jpg', '23.jpg', '24.jpg', '25.jpg', '26.jpg', '27.jpg', '28.jpg', '29.jpg', '30.jpg', '31.jpg']
+    photos = [''] #Your photos
+    photosCopy = [''] #Your photos
 
     if call.data == 'Present':
         named_tuple = time.localtime()
@@ -49,39 +45,7 @@ def callback_worker(call):
     if call.data == "no":
 
         photo1 = open('ScreenOfLife/1.jpg', 'rb')
-        photo2 = open('ScreenOfLife/2.jpg', 'rb')
-        photo3 = open('ScreenOfLife/3.jpg', 'rb')
-
-        photo4 = open('ScreenOfLife/4.jpg', 'rb')
-        photo5 = open('ScreenOfLife/5.jpg', 'rb')
-        photo6 = open('ScreenOfLife/6.jpg', 'rb')
-
-        photo7 = open('ScreenOfLife/7.jpg', 'rb')
-        photo8 = open('ScreenOfLife/8.jpg', 'rb')
-        photo9 = open('ScreenOfLife/9.jpg', 'rb')
-
-        photo10 = open('ScreenOfLife/10.jpg', 'rb')
-
-        photo11 = open('ScreenOfLife/11.jpg', 'rb')
-        photo12 = open('ScreenOfLife/12.jpg', 'rb')
-        photo13 = open('ScreenOfLife/13.jpg', 'rb')
-
-        photo14 = open('ScreenOfLife/14.jpg', 'rb')
-        photo15 = open('ScreenOfLife/15.jpg', 'rb')
-        photo16 = open('ScreenOfLife/16.jpg', 'rb')
-
-        photo17 = open('ScreenOfLife/17.jpg', 'rb')
-        photo18 = open('ScreenOfLife/18.jpg', 'rb')
-        photo19 = open('ScreenOfLife/19.jpg', 'rb')
-
-        photo20 = open('ScreenOfLife/20.jpg', 'rb')
-        photo21 = open('ScreenOfLife/21.jpg', 'rb')
-        photo22 = open('ScreenOfLife/22.jpg', 'rb')
-        photo23 = open('ScreenOfLife/23.jpg', 'rb')
-
-
-        video1 = open('ScreenOfLife/24.3gp', 'rb')
-        video2 = open('ScreenOfLife/25.3gp', 'rb')
+        #for another photo u should create a new variable and paste them adress to the photo(for example upper)
 
         bot.send_message(call.message.chat.id, 'Самому лучшему папе посвещается!')
         for i in range(1, 6):
@@ -153,7 +117,7 @@ def callback_worker(call):
             keyboard4 = types.InlineKeyboardMarkup()
             key_yes2 = types.InlineKeyboardButton(text='Обнови!', callback_data='yes1')
             keyboard4.add(key_yes2)
-            bot.send_messag e(call.message.chat.id, "Фотографии кончились, если хотите увидеть еще, то попросите разработчика добавить их. Я могу запустить эти фотографии еще раз, хотиет?", reply_markup=keyboard4)
+            bot.send_message(call.message.chat.id, "Фотографии кончились, если хотите увидеть еще, то попросите разработчика добавить их. Я могу запустить эти фотографии еще раз, хотиет?", reply_markup=keyboard4)
     if call.data == 'yes1':
         photos = photosCopy
 bot.polling(none_stop=True, interval=0)
